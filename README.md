@@ -1,1 +1,1 @@
-(Notes)[notes/README.md]
+[Notes](notes/README.md)
