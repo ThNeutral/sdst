@@ -1,0 +1,90 @@
+DROP DATABASE IF EXISTS plasma;
+
+CREATE DATABASE IF NOT EXISTS plasma;
+
+SELECT plasma;
+
+CREATE TYPE user_roles AS ENUM("Super Admin", "Admin", "User");
+
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles(
+    role_id SERIAL PRIMARY KEY,
+    role user_roles NOT NULL,
+    role_description VARCHAR(256)
+);
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+    user_id SERIAL PRIMARY KEY,
+    user_role VARCHAR(15) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    email VARCHAR(30) UNIQUE NOT NULL,
+    --phone_number VARCHAR(15) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    last_login TIMESTAMP,
+    role_id INT NOT NULL,
+    CONSTRAINT fk_user FOREIGN KEY (role_id)
+        REFERENCES roles (role_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+);
+
+CREATE TYPE log_levels AS ENUM("INFO", "EMERG", "ERROR", "NOTICE", "CRITICAL", "DEBUG");
+
+DROP TABLE IF EXISTS system_logs;
+CREATE TABLE system_logs(
+    log_id SERIAL NOT NULL PRIMARY KEY,
+    log_level log_levels NOT NULL,
+    message TEXT NOT NULL,
+    context JSONB,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    user_id INT NOT NULL,
+    CONSTRAINT fk_logs FOREIGN KEY (user_id)
+        REFERENCES users (user_id)
+        ON UPDATE CASCADE
+);
+
+CREATE TYPE statuses AS ENUM("Active", "Inactive", "Completed", "In progress", "Pending", "Cancelled");
+
+DROP TABLE IF EXISTS projects;
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    p_name VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    owner_id INT NOT NULL,
+    status statuses NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+DROP TABLE IF EXISTS project_metadata;
+CREATE TABLE project_metadata (
+    project_id SERIAL PRIMARY KEY,
+    metadata JSONB,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    CONSTRAINT fk_metadaata FOREIGN KEY (project_id)
+        REFERENCES projects(project_id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS project_users;
+CREATE TABLE project_users(
+    project_id INT NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    CONSTRAINT fk_proj_user FOREIGN KEY (project_id)
+        REFERENCES projects (project_id)
+        ON DELETE SET NULL,
+        ON UPDATE CASCADE
+);
+
+/* ALTER TABLE project_users ADD (
+    CONSTRAINT fk_users_proj FOREIGN KEY (user_id)
+        REFERENCES users (user_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+); */
+
