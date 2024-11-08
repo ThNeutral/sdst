@@ -1,8 +1,17 @@
 ## NOTES
 
-# Task for the Next Time
+# Tasks for the next time
+- 12 use cases
+- tests (automated or not)
+- class diagram
+- detail design
+- sequence diagram
+- UI examples
+- DB schema
+- all diagrams in UML
+
+# Backlog
 - Use Case Diagram
-- User Stories + Acceptance Criterias
 - Modules + Task Division
 
 # Modules
