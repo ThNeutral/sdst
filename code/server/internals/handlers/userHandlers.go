@@ -5,11 +5,12 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
+	"github.com/thneutral/sdst/code/server/internal/database"
 	"github.com/thneutral/sdst/code/server/internals/dummydb"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func HandleCreateUser(db *dummydb.DummyDB) http.HandlerFunc {
+func HandleCreateUser(db *dummydb.DummyDB, queries *database.Queries) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		type RequestModel struct {
 			Username string `json:"username"`
