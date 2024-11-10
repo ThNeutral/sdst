@@ -7,8 +7,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
@@ -46,25 +48,29 @@ func main() {
 
 	router := chi.NewRouter()
 
+	router.Use(middleware.RequestID)
+	router.Use(middleware.RealIP)
+	router.Use(middleware.Logger)
+	router.Use(middleware.Recoverer)
+	router.Use(middleware.Timeout(60 * time.Second))
+
 	router.Use(cors.Handler(cors.Options{
-		// AllowedOrigins:   []string{"https://foo.com"}, // Use this to allow specific origin hosts
-		AllowedOrigins: []string{"https://*", "http://*"},
-		// AllowOriginFunc:  func(r *http.Request, origin string) bool { return true },
+		AllowedOrigins:   []string{"https://*", "http://*"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: false,
-		MaxAge:           300, // Maximum value not ignored by any of major browsers
+		MaxAge:           300,
 	}))
 
 	router.Route("/user", func(r chi.Router) {
-		r.Post("/create", handlers.HandleCreateUser(db, queries))
-		r.Post("/login-email", handlers.HandleLoginByEmail(db))
-		r.Post("/login-username", handlers.HandleLoginByUsername(db))
+		r.Post("/create", handlers.HandleCreateUser(queries))
+		r.Post("/login-email", handlers.HandleLoginByEmail(queries))
+		r.Post("/login-username", handlers.HandleLoginByUsername(queries))
 	})
 
 	router.Route("/utils", func(r chi.Router) {
-		r.Get("/ping-gateway", handlers.Gateway(db, handlers.HandlePingGateway))
+		r.Get("/ping-gateway", handlers.Gateway(queries, handlers.HandlePingGateway))
 	})
 
 	log.Printf("Listening on port :%v\n", *port)

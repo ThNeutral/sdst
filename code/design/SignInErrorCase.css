@@ -1,0 +1,84 @@
+/* Error Container */
+.position: relative;
+width: 1440px;
+height: 1024px;
+background: #1e1e2e;
+
+/* Header */
+position: absolute;
+width: 1440px;
+height: 96px;
+left: calc(50% - 1440px / 2);
+top: 10px;
+background: #2e2e3e;
+
+/* Plasma Logo */
+position: absolute;
+width: 336px;
+height: 96px;
+left: 40px;
+top: 0px;
+
+/* Logo Image */
+position: absolute;
+width: 72px;
+height: 72px;
+left: 0px;
+top: 12px;
+background: url("—Pngtree—magic plasma ball abstract translucent_15853701.png");
+
+/* Header Title (Collaborative Editor Plasma) */
+position: absolute;
+width: 250px;
+height: 64px;
+left: 86px;
+top: 16px;
+font-family: "JetBrains Mono";
+font-weight: 400;
+font-size: 20px;
+line-height: 26px;
+color: #5e81ac;
+
+/* Error Input Field Container */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 6px;
+width: 353px;
+height: 56px;
+
+/* Error Message */
+display: flex;
+align-items: flex-end;
+font-family: "Inter";
+font-weight: 500;
+font-size: 13px;
+line-height: 125%;
+color: #e64646;
+
+/* Input Field Error Styling */
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 18px 16px;
+gap: 10px;
+width: 353px;
+height: 56px;
+background: rgba(34, 34, 34, 0.1);
+border: 1px solid #d8dadc;
+backdrop-filter: blur(7px);
+border-radius: 10px;
+
+/* Placeholder Text in Error */
+font-family: "Inter";
+font-weight: 400;
+font-size: 16px;
+line-height: 125%;
+color: rgba(212, 212, 220, 0.5);
+
+/* Error Icon */
+display: none;
+width: 24px;
+height: 24px;

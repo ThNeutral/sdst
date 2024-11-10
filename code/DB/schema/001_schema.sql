@@ -1,25 +1,12 @@
 -- +goose Up
-CREATE TYPE user_roles AS ENUM ('Super Admin', 'Admin', 'User');
-
-CREATE TABLE roles(
-    role_id UUID PRIMARY KEY,
-    role user_roles NOT NULL,
-    role_description VARCHAR(256)
-);
-
 CREATE TABLE users(
     user_id UUID PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    password VARCHAR(72) NOT NULL,
+    token UUID NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(30) UNIQUE NOT NULL,
-    created_at TIMESTAMP NOT NULL,
-    last_login TIMESTAMP,
-    role_id UUID NOT NULL,
-    CONSTRAINT fk_user FOREIGN KEY (role_id)
-        REFERENCES roles (role_id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+    password VARCHAR(72) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
+    last_login TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE system_logs(
@@ -38,15 +25,15 @@ CREATE TABLE projects (
     p_name VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
     owner_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 CREATE TABLE project_metadata (
     project_id UUID PRIMARY KEY,
     metadata JSONB,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW(),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
     CONSTRAINT fk_metadaata FOREIGN KEY (project_id)
         REFERENCES projects(project_id)
         ON DELETE SET NULL
@@ -56,6 +43,7 @@ CREATE TABLE project_metadata (
 CREATE TABLE project_users(
     project_id UUID NOT NULL,
     user_id UUID NOT NULL,
+    role VARCHAR(12) NOT NULL,
     PRIMARY KEY (project_id, user_id),
     CONSTRAINT fk_proj_user FOREIGN KEY (project_id)
         REFERENCES projects (project_id)
@@ -77,7 +65,6 @@ CREATE TABLE project_file(
 
 -- +goose Down
 
-DROP TABLE roles;
 DROP TABLE users;
 DROP TABLE system_logs;
 DROP TABLE projects;

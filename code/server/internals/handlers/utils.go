@@ -7,41 +7,45 @@ import (
 	"log"
 	"net/http"
 	"reflect"
-	"strings"
 
-	"github.com/thneutral/sdst/code/server/internals/dummydb"
+	"github.com/google/uuid"
+	"github.com/thneutral/sdst/code/server/internal/database"
 )
 
-type AuthenticatedHandler func(w http.ResponseWriter, r *http.Request, user map[string]string)
+type AuthenticatedHandler func(w http.ResponseWriter, r *http.Request, user database.User)
 
-func Gateway(db *dummydb.DummyDB, handler AuthenticatedHandler) http.HandlerFunc {
+func Gateway(queries *database.Queries, handler AuthenticatedHandler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")
-		if token == "" || !strings.HasPrefix(token, "Bearer ") {
-			writeError(w, "Missing or invalid Authorization token", http.StatusUnauthorized)
+		if token == "" {
+			writeError(w, "Missing Authorization header", http.StatusUnauthorized)
 			return
 		}
-		token = strings.TrimPrefix(token, "Bearer ")
-		dbrespchan := make(chan []map[string]string)
-		db.ReadRequest <- dummydb.ReadDBRequest{
-			Table:  "users",
-			Fields: []string{"username", "password", "token"},
-			Data:   dbrespchan,
-		}
-		dbresp := <-dbrespchan
-		var user map[string]string
-		for _, data := range dbresp {
-			if data["token"] == token {
-				user = data
-				break
-			}
-		}
-		if user == nil {
-			writeError(w, "Unknown token", http.StatusForbidden)
+
+		tokenUUID, err := uuid.Parse(token)
+		if err != nil {
+			writeError(w, "Invalid token", http.StatusBadRequest)
 			return
 		}
+
+		user, err := queries.GetUserByToken(r.Context(), tokenUUID)
+		if err != nil {
+			writeError(w, "Failed to find user with given token", http.StatusNotFound)
+			return
+		}
+
 		handler(w, r, user)
 	}
+}
+
+func HandlePingGateway(w http.ResponseWriter, r *http.Request, user database.User) {
+	var respmodel struct {
+		Username string `json:"username"`
+		Email    string `json:"email"`
+	}
+	respmodel.Username = user.Username
+	respmodel.Email = user.Email
+	writeResponse(w, respmodel, http.StatusOK)
 }
 
 func writeResponse(w http.ResponseWriter, payload interface{}, code int) {

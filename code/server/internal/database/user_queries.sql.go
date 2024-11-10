@@ -7,49 +7,117 @@ package database
 
 import (
 	"context"
+	"time"
 
 	"github.com/google/uuid"
-	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const createUser = `-- name: CreateUser :one
-INSERT INTO Users (user_id, first_name, last_name, password, email, created_at, last_login, role_id)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-RETURNING user_id, first_name, last_name, password, email, created_at, last_login, role_id
+INSERT INTO Users (user_id, token, username, password, email, created_at, last_login)
+VALUES ($1, $2, $3, $4, $5, $6, $7)
+RETURNING user_id, token, username, email, password, created_at, last_login
 `
 
 type CreateUserParams struct {
 	UserID    uuid.UUID
-	FirstName string
-	LastName  string
+	Token     uuid.UUID
+	Username  string
 	Password  string
 	Email     string
-	CreatedAt pgtype.Timestamp
-	LastLogin pgtype.Timestamp
-	RoleID    uuid.UUID
+	CreatedAt time.Time
+	LastLogin time.Time
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
 	row := q.db.QueryRow(ctx, createUser,
 		arg.UserID,
-		arg.FirstName,
-		arg.LastName,
+		arg.Token,
+		arg.Username,
 		arg.Password,
 		arg.Email,
 		arg.CreatedAt,
 		arg.LastLogin,
-		arg.RoleID,
 	)
 	var i User
 	err := row.Scan(
 		&i.UserID,
-		&i.FirstName,
-		&i.LastName,
-		&i.Password,
+		&i.Token,
+		&i.Username,
 		&i.Email,
+		&i.Password,
 		&i.CreatedAt,
 		&i.LastLogin,
-		&i.RoleID,
 	)
 	return i, err
+}
+
+const getUserByEmail = `-- name: GetUserByEmail :one
+SELECT user_id, token, username, email, password, created_at, last_login FROM Users WHERE email = $1
+`
+
+func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByEmail, email)
+	var i User
+	err := row.Scan(
+		&i.UserID,
+		&i.Token,
+		&i.Username,
+		&i.Email,
+		&i.Password,
+		&i.CreatedAt,
+		&i.LastLogin,
+	)
+	return i, err
+}
+
+const getUserByToken = `-- name: GetUserByToken :one
+SELECT user_id, token, username, email, password, created_at, last_login FROM Users WHERE token = $1
+`
+
+func (q *Queries) GetUserByToken(ctx context.Context, token uuid.UUID) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByToken, token)
+	var i User
+	err := row.Scan(
+		&i.UserID,
+		&i.Token,
+		&i.Username,
+		&i.Email,
+		&i.Password,
+		&i.CreatedAt,
+		&i.LastLogin,
+	)
+	return i, err
+}
+
+const getUserByUsername = `-- name: GetUserByUsername :one
+SELECT user_id, token, username, email, password, created_at, last_login FROM Users WHERE username = $1
+`
+
+func (q *Queries) GetUserByUsername(ctx context.Context, username string) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByUsername, username)
+	var i User
+	err := row.Scan(
+		&i.UserID,
+		&i.Token,
+		&i.Username,
+		&i.Email,
+		&i.Password,
+		&i.CreatedAt,
+		&i.LastLogin,
+	)
+	return i, err
+}
+
+const updateLastLoginTime = `-- name: UpdateLastLoginTime :exec
+UPDATE Users SET last_login = $1 WHERE user_id = $2
+`
+
+type UpdateLastLoginTimeParams struct {
+	LastLogin time.Time
+	UserID    uuid.UUID
+}
+
+func (q *Queries) UpdateLastLoginTime(ctx context.Context, arg UpdateLastLoginTimeParams) error {
+	_, err := q.db.Exec(ctx, updateLastLoginTime, arg.LastLogin, arg.UserID)
+	return err
 }

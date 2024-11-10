@@ -3,14 +3,14 @@ package handlers
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/thneutral/sdst/code/server/internal/database"
-	"github.com/thneutral/sdst/code/server/internals/dummydb"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func HandleCreateUser(db *dummydb.DummyDB, queries *database.Queries) http.HandlerFunc {
+func HandleCreateUser(queries *database.Queries) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		type RequestModel struct {
 			Username string `json:"username"`
@@ -22,123 +22,106 @@ func HandleCreateUser(db *dummydb.DummyDB, queries *database.Queries) http.Handl
 			log.Println(err.Error())
 			return
 		}
+
 		password, err := bcrypt.GenerateFromPassword([]byte(reqmodel.Password), bcrypt.DefaultCost)
 		if err != nil {
 			writeError(w, "Failed to hash password", http.StatusInternalServerError)
 			return
 		}
-		token := uuid.NewString()
-		db.WriteRequest <- dummydb.WriteDBRequest{
-			Table: "users",
-			Row: map[string]string{
-				"id":       uuid.NewString(),
-				"username": reqmodel.Username,
-				"email":    reqmodel.Email,
-				"password": string(password),
-				"token":    token,
-			},
+
+		user, err := queries.CreateUser(r.Context(), database.CreateUserParams{
+			UserID:    uuid.New(),
+			Token:     uuid.New(),
+			Username:  reqmodel.Username,
+			Email:     reqmodel.Email,
+			Password:  string(password),
+			CreatedAt: time.Now(),
+			LastLogin: time.Now(),
+		})
+		if err != nil {
+			log.Println(err)
+			writeError(w, "Failed to create user", http.StatusInternalServerError)
+			return
 		}
-		writeResponse(w, struct {
+
+		var respmodel struct {
 			Token string `json:"token"`
-		}{Token: token}, http.StatusCreated)
+		}
+		respmodel.Token = user.Token.String()
+		writeResponse(w, respmodel, http.StatusCreated)
 	}
 }
 
-func HandleLoginByEmail(db *dummydb.DummyDB) http.HandlerFunc {
+func HandleLoginByEmail(queries *database.Queries) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		type RequestModel struct {
 			Email    string `json:"email"`
 			Password string `json:"password"`
 		}
+
 		reqmodel, err := verifyModel[RequestModel](w, r)
 		if err != nil {
 			log.Println(err.Error())
 			return
 		}
-		dbrespchan := make(chan []map[string]string)
-		db.ReadRequest <- dummydb.ReadDBRequest{
-			Table:  "users",
-			Fields: []string{"email", "password", "token"},
-			Data:   dbrespchan,
-		}
-		dbresp := <-dbrespchan
 
-		var user map[string]string
-		for _, row := range dbresp {
-			if row["email"] == reqmodel.Email {
-				user = row
-				break
-			}
-		}
-
-		if user == nil {
-			writeError(w, "Did not find user with such email", http.StatusNotFound)
+		user, err := queries.GetUserByEmail(r.Context(), reqmodel.Email)
+		if err != nil {
+			writeError(w, "Failed to find user with given email", http.StatusNotFound)
 			return
 		}
 
-		passwordHashed := user["password"]
-		token := user["token"]
-
-		if err := bcrypt.CompareHashAndPassword([]byte(passwordHashed), []byte(reqmodel.Password)); err != nil {
-			writeError(w, "Invalid password", http.StatusForbidden)
+		if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(reqmodel.Password)); err != nil {
+			writeError(w, "Incorrect password", http.StatusForbidden)
 			return
 		}
 
-		writeResponse(w, struct {
+		queries.UpdateLastLoginTime(r.Context(), database.UpdateLastLoginTimeParams{
+			UserID:    user.UserID,
+			LastLogin: time.Now(),
+		})
+
+		var respmodel struct {
 			Token string `json:"token"`
-		}{Token: token}, http.StatusOK)
+		}
+		respmodel.Token = user.Token.String()
+		writeResponse(w, respmodel, http.StatusCreated)
 	}
 }
 
-func HandleLoginByUsername(db *dummydb.DummyDB) http.HandlerFunc {
+func HandleLoginByUsername(queries *database.Queries) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		type RequestModel struct {
 			Username string `json:"username"`
 			Password string `json:"password"`
 		}
+
 		reqmodel, err := verifyModel[RequestModel](w, r)
 		if err != nil {
 			log.Println(err.Error())
 			return
 		}
-		dbrespchan := make(chan []map[string]string)
-		db.ReadRequest <- dummydb.ReadDBRequest{
-			Table:  "users",
-			Fields: []string{"username", "password", "token"},
-			Data:   dbrespchan,
-		}
-		dbresp := <-dbrespchan
 
-		var user map[string]string
-		for _, row := range dbresp {
-			if row["username"] == reqmodel.Username {
-				user = row
-				break
-			}
-		}
-
-		if user == nil {
-			writeError(w, "Did not find user with such username", http.StatusNotFound)
+		user, err := queries.GetUserByUsername(r.Context(), reqmodel.Username)
+		if err != nil {
+			writeError(w, "Failed to find user with given email", http.StatusNotFound)
 			return
 		}
 
-		passwordHashed := user["password"]
-		token := user["token"]
-
-		if err := bcrypt.CompareHashAndPassword([]byte(passwordHashed), []byte(reqmodel.Password)); err != nil {
-			writeError(w, "Invalid password", http.StatusForbidden)
+		if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(reqmodel.Password)); err != nil {
+			writeError(w, "Incorrect password", http.StatusForbidden)
 			return
 		}
 
-		writeResponse(w, struct {
+		queries.UpdateLastLoginTime(r.Context(), database.UpdateLastLoginTimeParams{
+			UserID:    user.UserID,
+			LastLogin: time.Now(),
+		})
+
+		var respmodel struct {
 			Token string `json:"token"`
-		}{Token: token}, http.StatusOK)
+		}
+		respmodel.Token = user.Token.String()
+		writeResponse(w, respmodel, http.StatusCreated)
 	}
-}
-
-func HandlePingGateway(w http.ResponseWriter, r *http.Request, user map[string]string) {
-	writeResponse(w, struct {
-		Username string `json:"username"`
-		Email    string `json:"email"`
-	}{Username: user["username"], Email: user["email"]}, http.StatusOK)
 }

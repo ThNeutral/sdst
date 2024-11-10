@@ -1,0 +1,79 @@
+.userform,
+.userform-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userform-text-big {
+  width: 339px;
+  height: 42px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 130%;
+  color: #5e81ac;
+}
+
+.userform-text-small {
+  width: 346px;
+  height: 40px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #4d4d4d;
+}
+
+.userform-form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 353px;
+  height: 56px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 16px;
+  gap: 10px;
+  margin: 5px;
+  background: rgba(34, 34, 34, 0.1);
+  border: 1px solid #d8dadc;
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(212, 212, 220, 0.5);
+}
+
+.userfrom-form-button {
+  width: 353px;
+  height: 56px;
+  background: #5e81ac;
+  border-radius: 10px;
+  font-family: "JetBrains Mono";
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 56px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.userform-form-input-error {
+  margin: 0;
+  position: relative;
+  width: 339px;
+  height: 0px;
+  left: 370px;
+  top: -42px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 125%;
+  color: #e64646;
+}
