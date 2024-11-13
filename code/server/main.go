@@ -12,15 +12,23 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/gorilla/websocket"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 	"github.com/thneutral/sdst/code/server/internal/database"
-	"github.com/thneutral/sdst/code/server/internals/dummydb"
-	"github.com/thneutral/sdst/code/server/internals/handlers"
+	"github.com/thneutral/sdst/code/server/internal/editorhub"
+	"github.com/thneutral/sdst/code/server/internal/handlers"
 )
 
-var db *dummydb.DummyDB
+var editorHub *editorhub.Hub
 var queries *database.Queries
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
 
 func main() {
 	godotenv.Load()
@@ -33,9 +41,6 @@ func main() {
 	port := flag.String("port", "8080", "Set server port. By default port is 8080")
 	flag.Parse()
 
-	db = dummydb.GetDummyDB()
-	go db.Run()
-
 	ctx := context.Background()
 	conn, err := pgx.Connect(ctx, db_url)
 	if err != nil {
@@ -45,6 +50,9 @@ func main() {
 	defer conn.Close(ctx)
 
 	queries = database.New(conn)
+
+	editorHub = editorhub.GetNewEditorHub()
+	go editorHub.Run()
 
 	router := chi.NewRouter()
 
@@ -71,6 +79,10 @@ func main() {
 
 	router.Route("/utils", func(r chi.Router) {
 		r.Get("/ping-gateway", handlers.Gateway(queries, handlers.HandlePingGateway))
+	})
+
+	router.Route("/editor", func(r chi.Router) {
+		r.Get("/open", handlers.WSGateway(upgrader, queries, handlers.HandleEditorHub(editorHub)))
 	})
 
 	log.Printf("Listening on port :%v\n", *port)

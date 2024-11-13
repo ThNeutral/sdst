@@ -5,6 +5,7 @@ import "./css/index.css";
 import { CreateUser } from "./components/CreateUser";
 import { Header } from "./components/Header";
 import { LoginUser } from "./components/LoginUser";
+import { SynchEditor } from "./components/SynchEditor";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "editor",
+        element: <SynchEditor />
+      }
     ],
   },
 ]);
