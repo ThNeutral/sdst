@@ -14,3 +14,9 @@ SELECT * FROM Users WHERE username = $1;
 
 -- name: GetUserByToken :one
 SELECT * FROM Users WHERE token = $1;
+
+-- name: DeleteUserByToken :exec
+DELETE FROM Users WHERE token = $1;
+
+-- name: DeleteUserByUsername :exec
+DELETE FROM Users WHERE username = $1;

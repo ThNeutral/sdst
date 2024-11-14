@@ -73,6 +73,7 @@ func main() {
 
 	router.Route("/user", func(r chi.Router) {
 		r.Post("/create", handlers.HandleCreateUser(queries))
+		r.Delete("/delete", handlers.Gateway(queries, handlers.HandleDeleteUser(queries)))
 		r.Post("/login-email", handlers.HandleLoginByEmail(queries))
 		r.Post("/login-username", handlers.HandleLoginByUsername(queries))
 	})

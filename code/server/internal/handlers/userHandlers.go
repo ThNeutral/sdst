@@ -25,6 +25,7 @@ func HandleCreateUser(queries *database.Queries) http.HandlerFunc {
 
 		password, err := bcrypt.GenerateFromPassword([]byte(reqmodel.Password), bcrypt.DefaultCost)
 		if err != nil {
+			log.Println(err)
 			writeError(w, "Failed to hash password", http.StatusInternalServerError)
 			return
 		}
@@ -85,7 +86,7 @@ func HandleLoginByEmail(queries *database.Queries) http.HandlerFunc {
 			Token string `json:"token"`
 		}
 		respmodel.Token = user.Token.String()
-		writeResponse(w, respmodel, http.StatusCreated)
+		writeResponse(w, respmodel, http.StatusOK)
 	}
 }
 
@@ -122,6 +123,17 @@ func HandleLoginByUsername(queries *database.Queries) http.HandlerFunc {
 			Token string `json:"token"`
 		}
 		respmodel.Token = user.Token.String()
-		writeResponse(w, respmodel, http.StatusCreated)
+		writeResponse(w, respmodel, http.StatusOK)
+	}
+}
+
+func HandleDeleteUser(queries *database.Queries) AuthenticatedHandler {
+	return func(w http.ResponseWriter, r *http.Request, user database.User) {
+		err := queries.DeleteUserByUsername(r.Context(), user.Username)
+		if err != nil {
+			writeError(w, "Failed to delete user", http.StatusInternalServerError)
+			return
+		}
+		writeResponse(w, nil, http.StatusNoContent)
 	}
 }
