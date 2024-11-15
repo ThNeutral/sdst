@@ -1,0 +1,504 @@
+/* EditingPage */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #1e1e2e;
+
+/* Header */
+
+position: absolute;
+width: 1440px;
+height: 40px;
+left: calc(50% - 1440px / 2);
+top: 10px;
+
+background: #2e2e3e;
+
+/* —Pngtree—magic plasma ball abstract translucent_15853701 1 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 24px;
+top: 4px;
+
+background: url(—Pngtree—magic plasma ball abstract translucent_15853701.png);
+
+/* Button */
+
+position: absolute;
+width: 80px;
+height: 27.5px;
+left: 680px;
+top: 6px;
+
+/* RunButton */
+
+position: absolute;
+width: 80px;
+height: 27.5px;
+left: 680px;
+top: 6px;
+
+background: #57d57e;
+border-radius: 12px;
+
+/* Frame 16 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 50.62px;
+height: 18.12px;
+left: 698.12px;
+top: 11px;
+
+border-radius: 5px;
+
+/* RUN */
+
+width: 29px;
+height: 24px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #e4e4e6;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Polygon 1 */
+
+position: absolute;
+width: 20px;
+height: 20px;
+left: 708.12px;
+top: 9.75px;
+
+background: #e4e4e6;
+border-radius: 4px;
+transform: rotate(90deg);
+
+/* InviteButton */
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1285px;
+top: 7px;
+
+/* Rectangle 19 */
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1285px;
+top: 7px;
+
+background: #3e3e5e;
+border-radius: 12px;
+
+/* InvPerson */
+
+position: absolute;
+width: 22.5px;
+height: 22.5px;
+left: 1359.38px;
+top: 8.25px;
+
+/* UsrIcon 1 */
+
+position: absolute;
+width: 22.5px;
+height: 22.5px;
+left: 1381.88px;
+top: 8.25px;
+
+background: url(UsrIcon.png);
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+/* Rectangle 17 */
+
+position: absolute;
+width: 81.09px;
+height: 67.97px;
+left: 1329.84px;
+top: -8.62px;
+
+background: #5e81ac;
+
+/* Plus */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: 1370.62px;
+top: 10.75px;
+
+/* plus_red 1 */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: 1370.62px;
+top: 10.75px;
+
+background: url(plus_red.png);
+
+/* Rectangle 18 */
+
+position: absolute;
+width: 31.6px;
+height: 26.4px;
+left: 1359.83px;
+top: 0.35px;
+
+background: #e4e4e6;
+
+/* Invite */
+
+position: absolute;
+width: 73.75px;
+height: 25px;
+left: 1285.62px;
+top: 7px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #e4e4e6;
+
+/* Ellipse 1 */
+
+position: absolute;
+width: 25px;
+height: 25px;
+left: 1405px;
+top: 8px;
+
+background: #3e3e5e;
+
+/* Repo Name */
+
+position: absolute;
+width: 150px;
+height: 32px;
+left: 61px;
+top: 4px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+
+color: #e4e4e6;
+
+/* TV - 1 */
+
+position: absolute;
+width: 1000px;
+height: 974px;
+left: 220px;
+top: 50px;
+
+background: #3e3e5e;
+
+/* 04 Search input */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 8px 8px 12px;
+gap: 12px;
+
+position: absolute;
+width: 137px;
+height: 25px;
+left: 40px;
+top: 58px;
+
+background: #3e3e5e;
+border: 1px solid #3a3a4a;
+border-radius: 8px;
+
+/* Label */
+
+width: 89px;
+height: 24px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 24px;
+/* identical to box height, or 240% */
+
+color: #5e81ac;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+/* MagniGlassIcon 1 */
+
+width: 16px;
+height: 16px;
+
+background: url(MagniGlassIcon.png);
+background-blend-mode: difference;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Line 1 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 0px;
+top: 98px;
+
+border: 1px solid #3a3a4a;
+
+/* Line 5 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 0px;
+top: 120px;
+
+border: 1px solid #3a3a4a;
+
+/* Line 2 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 1220px;
+top: 106px;
+
+border: 1px solid #3a3a4a;
+
+/* Label */
+
+position: absolute;
+width: 63px;
+height: 24px;
+left: 1304px;
+top: 66px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 24px;
+/* identical to box height, or 100% */
+
+color: #5e81ac;
+
+/* Line 3 */
+
+position: absolute;
+width: 974px;
+height: 0px;
+left: 220px;
+top: 50px;
+
+border: 1px solid #3a3a4a;
+transform: rotate(90deg);
+
+/* Line 4 */
+
+position: absolute;
+width: 974px;
+height: 0px;
+left: 1220px;
+top: 50px;
+
+border: 1px solid #3a3a4a;
+transform: rotate(90deg);
+
+/* addNewFile */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 10px;
+top: 103px;
+
+/* add-file */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 10px;
+top: 103px;
+
+background: url(add-file.png);
+
+/* Rectangle 20 */
+
+position: absolute;
+width: 32px;
+height: 19px;
+left: 0px;
+top: 98px;
+
+background: #e4e4e6;
+
+/* hideLeftSide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 181px;
+top: 103px;
+
+/* hide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 181px;
+top: 103px;
+
+background: url(hide.png);
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 31px;
+height: 42px;
+left: 169px;
+top: 88px;
+
+background: #e4e4e6;
+
+/* hideRightSide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 1237px;
+top: 60px;
+
+/* hide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 1237px;
+top: 60px;
+
+background: url(hide.png);
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 31px;
+height: 42px;
+left: 1225px;
+top: 45px;
+
+background: #e4e4e6;
+
+/* moreOptions */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 198px;
+top: 103px;
+
+/* dots */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 198px;
+top: 103px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 49px;
+height: 59px;
+left: 183px;
+top: 76px;
+
+background: #e4e4e6;
+
+/* addFolder */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 27px;
+top: 103px;
+
+/* add-folder */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 27px;
+top: 103px;
+
+background: url(add-folder.png);
+
+/* Rectangle 23 */
+
+position: absolute;
+width: 70px;
+height: 69px;
+left: 1px;
+top: 75px;
+
+background: #e4e4e6;
+
+/* Line 6 */
+
+position: absolute;
+width: 1000px;
+height: 0px;
+left: 220px;
+top: 1002px;
+
+border: 5px solid #3a3a4a;
