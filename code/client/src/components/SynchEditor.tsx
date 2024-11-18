@@ -1,6 +1,56 @@
 import { useEffect, useRef, useState } from "react";
 import { baseURL } from "../common/urls";
 
+function linesToString(lines: string[]): string {
+  return lines.join("\n");
+}
+
+function stringToLines(str: string): string[] {
+  return str.split("\n");
+}
+
+function compareLines(lines1: string[], lines2: string[]): number[] {
+  const diff: number[] = [];
+  const smallerLength = Math.min(lines1.length, lines2.length);
+  const biggerLength = Math.max(lines1.length, lines2.length);
+
+  for (let i = 0; i < biggerLength; i++) {
+    if (i >= smallerLength || lines1[i] != lines2[i]) {
+      diff.push(i);
+    }
+  }
+  return diff;
+}
+
+function cursorPositionToLineIndex(pos: number, lines: string[]): number {
+  let count = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const len = lines[i] == "" ? 1 : lines[i].length + 1;
+    if (pos <= count + len) {
+      return i;
+    }
+    count += len;
+  }
+  return -1;
+}
+
+interface Difference {
+  index: number;
+  data: string;
+}
+
+function addDifference(lines: string[], diff: Difference[]) {
+  console.log(lines);
+  for (let i = 0; i < diff.length; i++) {
+    while (diff[i].index >= lines.length) {
+      lines.push("");
+    }
+    lines[diff[i].index] = diff[i].data;
+  }
+  console.log(lines);
+  return lines;
+}
+
 function useDelay<T>(value: T, delay: number) {
   const [delayedValue, setDelayedValue] = useState(value);
   const timeoutID = useRef(0);
@@ -12,31 +62,20 @@ function useDelay<T>(value: T, delay: number) {
       clearTimeout(timeoutID.current);
       timeoutID.current = 0;
     }, delay);
-  }, [value, delay]); // Now runs every time value or delay changes
+  }, [value, delay]);
 
   return delayedValue;
 }
-
-function useDebounce<T>(value: T, delay: number) {
-  const [delayedValue, setDelayedValue] = useState(value);
-
-  useEffect(() => {
-    const timeoutID = setTimeout(() => {
-      setDelayedValue(value);
-    }, delay);
-
-    return () => clearTimeout(timeoutID);
-  }, [value, delay]); // Now runs every time value or delay changes
-
-  return delayedValue;
-}
-
 export function SynchEditor() {
+  const [currentCursorPosition, setCurrentCursorPosition] = useState(0);
+  const [lockedLines, setLockedLine] = useState<Map<number, string>>(
+    new Map<number, string>()
+  );
   const [clientContent, setClientContent] = useState("");
-  const [stageContent, setStageContent] = useState("");
   const [serverContent, setServerContent] = useState("");
-  const delayedValue = useDelay(clientContent, 500);
-  const [isReadyToSynchronizeChanges, setIsReadyToSynchronizeChanges] = useState(false)
+  const delayedValue = useDelay(clientContent, 250);
+  const [isBusy, setIsBusy] = useState(false);
+  const [shouldSyncronize, setShouldSyncronize] = useState(true);
   const ws = useRef<WebSocket>();
 
   function connectToWS() {
@@ -71,26 +110,18 @@ export function SynchEditor() {
         console.log(data.message);
         return;
       }
-      if (data.ack) {
-        console.log("Recieved acknowledgement");
-        setServerContent(stageContent);
+      if (data.locked) {
+        setLockedLine((old) => {
+          const newMap = new Map(old);
+          newMap.delete(data.unlocked - 1);
+          newMap.set(data.locked - 1, data.by);
+          return newMap;
+        });
         return;
       }
       if (data.content) {
-        console.log("Recieved base content")
-        const content = linesToString(data.content);
-        setServerContent(content);
-        setIsReadyToSynchronizeChanges(true)
-        return;
-      }
-      if (data.diff) {
-        console.log(data.diff)
-        const newLines = linesToString(
-          addDifference(stringToLines(serverContent), data.diff)
-        );
-        console.log(newLines)
-        setServerContent(newLines);
-        setIsReadyToSynchronizeChanges(true);
+        setServerContent(data.content);
+        setShouldSyncronize(true);
         return;
       }
       console.log("Recieved unknown data", data);
@@ -104,43 +135,73 @@ export function SynchEditor() {
   }
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const currentCursorPosition = cursorPositionToLineIndex(
+      e.target.selectionStart,
+      stringToLines(e.target.value)
+    );
+    setCurrentCursorPosition(currentCursorPosition);
+
+    setIsBusy(true);
     setClientContent(e.target.value);
   }
 
   useEffect(() => {
     if (ws.current) {
-      const clientLines = stringToLines(clientContent);
-      const serverLines = stringToLines(serverContent);
-      const data = {
-        diff: compareLines(clientLines, serverLines).map((index) => {
-          return {
-            index: index,
-            data: stringToLines(clientContent)[index],
-          };
-        }),
-      };
-      if (data.diff.length == 0) return;
-      setStageContent(clientContent);
-      ws.current.send(JSON.stringify(data));
+      ws.current.send(
+        JSON.stringify({
+          content: clientContent,
+        })
+      );
     }
   }, [delayedValue]);
 
   useEffect(() => {
-    if (isReadyToSynchronizeChanges) {
-        setClientContent(serverContent)
-        setIsReadyToSynchronizeChanges(false)
+    if (ws.current) {
+      ws.current.send(
+        JSON.stringify({
+          cursor_position: currentCursorPosition + 1,
+        })
+      );
     }
-  }, [isReadyToSynchronizeChanges]);
+  }, [currentCursorPosition]);
+
+  useEffect(() => {
+    console.log("Cursor position changed", currentCursorPosition);
+  }, [currentCursorPosition]);
+
+  useEffect(() => {
+    const timeoutID = setTimeout(() => {
+      setIsBusy(false);
+    }, 500);
+    return () => clearTimeout(timeoutID);
+  }, [clientContent]);
+
+  useEffect(() => {
+    if (!isBusy && shouldSyncronize) {
+      setClientContent(serverContent);
+      setShouldSyncronize(false);
+    }
+  }, [isBusy, shouldSyncronize]);
 
   return (
     <>
       <div>
         <textarea
           value={clientContent}
-          onChange={handleChange}
-          style={{ width: "300px", height: "200px" }}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+          style={{ width: "300px", height: "200px", lineHeight: "15px" }}
         ></textarea>
       </div>
+      {Array.from(lockedLines.entries()).map(([key, value]) => (
+        <div
+          key={key}
+          style={{ position: "absolute", left: "310px", top: 100 + key * 15 }}
+        >
+          &lt;== {value}
+        </div>
+      ))}
       <div>
         <button onClick={connectToWS}>connect</button>
       </div>
@@ -149,41 +210,4 @@ export function SynchEditor() {
       </div>
     </>
   );
-}
-
-function linesToString(lines: string[]): string {
-  return lines.join("\n");
-}
-
-function stringToLines(str: string): string[] {
-  return str.split("\n");
-}
-
-function compareLines(lines1: string[], lines2: string[]): number[] {
-  const diff: number[] = [];
-  const smallerLength = Math.min(lines1.length, lines2.length);
-  const biggerLength = Math.max(lines1.length, lines2.length);
-
-  for (let i = 0; i < biggerLength; i++) {
-    if (i >= smallerLength || lines1[i] != lines2[i]) {
-      diff.push(i);
-    }
-  }
-  return diff;
-}
-
-interface Difference {
-  index: number;
-  data: string;
-}
-
-function addDifference(lines: string[], diff: Difference[]) {
-  for (let i = 0; i < diff.length; i++) {
-    if (diff[i].index >= lines.length) {
-      lines.push(diff[i].data);
-    } else {
-      lines[diff[i].index] = diff[i].data;
-    }
-  }
-  return lines;
 }

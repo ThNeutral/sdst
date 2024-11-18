@@ -18,7 +18,9 @@ export function UserFrom(params: UserFromParams) {
   return (
     <div className="userform">
       <p className="userform-text-big">{params.textBig}</p>
-      <p className="userform-text-small">{params.textSmall}</p>
+      {params.textSmall ? (
+        <p className="userform-text-small">{params.textSmall}</p>
+      ) : null}
       <form className="userform-form" onSubmit={params.submitHandler}>
         {params.fields.map((field) => {
           return (
@@ -30,7 +32,9 @@ export function UserFrom(params: UserFromParams) {
                 placeholder={field.placeholder}
               />
               {field.isError ? (
-                <p className="userform-form-input-error">{field.errorMessage}</p>
+                <p className="userform-form-input-error">
+                  {field.errorMessage}
+                </p>
               ) : (
                 <></>
               )}

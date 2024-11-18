@@ -1,30 +1,21 @@
 package editorhub
 
 import (
-	"bufio"
+	"io"
 	"os"
 )
 
-func readFileContent(fileName string) ([][]byte, error) {
-	var content [][]byte
-
+func readFileContent(fileName string) (string, error) {
 	file, err := os.Open(fileName)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Bytes()
-		lineCopy := make([]byte, len(line))
-		copy(lineCopy, line)
-		content = append(content, lineCopy)
+	bytes, err := io.ReadAll(file)
+	if err != nil {
+		return "", err
 	}
 
-	if err := scanner.Err(); err != nil {
-		return nil, err
-	}
-
-	return content, nil
+	return string(bytes), nil
 }

@@ -38,12 +38,10 @@ func HandleEditorHub(hub *editorhub.Hub) WSAuthenticatedHandler {
 			}
 		}()
 		type ResponseModel struct {
-			Content []string `json:"content"`
+			Content string `json:"content"`
 		}
 		var respmodel ResponseModel
-		for _, data := range response.Content {
-			respmodel.Content = append(respmodel.Content, string(data))
-		}
+		respmodel.Content = response.Content
 		err = conn.WriteJSON(respmodel)
 		if err != nil {
 			fmt.Println("Failed to write message")
@@ -58,21 +56,26 @@ func HandleEditorHub(hub *editorhub.Hub) WSAuthenticatedHandler {
 			if messageType == websocket.CloseMessage {
 				return
 			}
-			var diff struct {
-				Difference []editorhub.TDifference `json:"diff"`
+			var incoming struct {
+				CursorPosition int    `json:"cursor_position"`
+				Content        string `json:"content"`
 			}
-			_ = json.Unmarshal(data, &diff)
-			hub.WriteRequest <- editorhub.TWriteRequest{
-				FileName:   reqmodel.FileName,
-				Difference: diff.Difference,
-				Conn:       conn,
+			_ = json.Unmarshal(data, &incoming)
+			if incoming.Content != "" {
+				hub.WriteRequest <- editorhub.TWriteRequest{
+					FileName: reqmodel.FileName,
+					Data:     incoming.Content,
+					Conn:     conn,
+				}
 			}
-			var resp struct {
-				Ack string `json:"ack"`
+			if incoming.CursorPosition != 0 {
+				hub.LockRequest <- editorhub.TLockRequest{
+					FileName:   reqmodel.FileName,
+					Conn:       conn,
+					LockedLine: incoming.CursorPosition,
+					By:         user.Username,
+				}
 			}
-			resp.Ack = "Acknowledged"
-			json, _ := json.Marshal(resp)
-			conn.WriteMessage(websocket.TextMessage, json)
 		}
 	}
 }

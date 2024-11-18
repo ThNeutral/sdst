@@ -2,15 +2,14 @@ package editorhub
 
 import (
 	"fmt"
-	"slices"
 
 	"github.com/gorilla/websocket"
 )
 
 type File struct {
 	FileName string
-	Content  [][]byte
-	UsedBy   map[*websocket.Conn]bool
+	Content  string
+	UsedBy   map[*websocket.Conn]int
 }
 
 type TDifference struct {
@@ -18,15 +17,22 @@ type TDifference struct {
 	Data  string `json:"data"`
 }
 
-type TWriteRequest struct {
+type TLockRequest struct {
 	FileName   string
 	Conn       *websocket.Conn
-	Difference []TDifference
+	LockedLine int
+	By         string
+}
+
+type TWriteRequest struct {
+	FileName string
+	Conn     *websocket.Conn
+	Data     string
 }
 
 type TAddResponse struct {
 	Error   error
-	Content [][]byte
+	Content string
 }
 
 type TAddRequest struct {
@@ -45,6 +51,7 @@ type Hub struct {
 	WriteRequest  chan TWriteRequest
 	AddRequest    chan TAddRequest
 	DeleteRequest chan TDeleteRequest
+	LockRequest   chan TLockRequest
 }
 
 func GetNewEditorHub() *Hub {
@@ -53,12 +60,37 @@ func GetNewEditorHub() *Hub {
 		WriteRequest:  make(chan TWriteRequest),
 		AddRequest:    make(chan TAddRequest),
 		DeleteRequest: make(chan TDeleteRequest),
+		LockRequest:   make(chan TLockRequest),
 	}
 }
 
 func (hub *Hub) Run() {
 	for {
 		select {
+		case request := <-hub.LockRequest:
+			{
+				file, ok := hub.files[request.FileName]
+				if !ok {
+					fmt.Println("Failed to find" + request.FileName)
+					continue
+				}
+				old := file.UsedBy[request.Conn]
+				file.UsedBy[request.Conn] = request.LockedLine
+				for conn, _ := range file.UsedBy {
+					if conn == request.Conn {
+						continue
+					}
+					var content struct {
+						Unlocked int    `json:"unlocked"`
+						Locked   int    `json:"locked"`
+						By       string `json:"by"`
+					}
+					content.Unlocked = old
+					content.Locked = request.LockedLine
+					content.By = request.By
+					conn.WriteJSON(content)
+				}
+			}
 		case request := <-hub.WriteRequest:
 			{
 				file, ok := hub.files[request.FileName]
@@ -66,25 +98,16 @@ func (hub *Hub) Run() {
 					fmt.Println("Failed to find" + request.FileName)
 					continue
 				}
-				slices.SortFunc(request.Difference, func(prev TDifference, next TDifference) int {
-					return prev.Index - next.Index
-				})
-				for _, diff := range request.Difference {
-					if diff.Index >= len(file.Content) {
-						file.Content = append(file.Content, []byte(diff.Data))
-					} else {
-						file.Content[diff.Index] = []byte(diff.Data)
-					}
-				}
+				file.Content = request.Data
 				for conn, _ := range file.UsedBy {
 					if conn == request.Conn {
 						continue
 					}
-					var diff struct {
-						Difference []TDifference `json:"diff"`
+					var content struct {
+						Content string `json:"content"`
 					}
-					diff.Difference = request.Difference
-					conn.WriteJSON(diff)
+					content.Content = request.Data
+					conn.WriteJSON(content)
 				}
 			}
 		case request := <-hub.AddRequest:
@@ -101,8 +124,8 @@ func (hub *Hub) Run() {
 					}
 					var newFile File
 					newFile.FileName = request.FileName
-					newFile.UsedBy = map[*websocket.Conn]bool{
-						request.Conn: true,
+					newFile.UsedBy = map[*websocket.Conn]int{
+						request.Conn: 0,
 					}
 					newFile.Content = content
 					hub.files[request.FileName] = &newFile
@@ -113,7 +136,7 @@ func (hub *Hub) Run() {
 					var response TAddResponse
 					response.Content = file.Content
 					response.Error = nil
-					file.UsedBy[request.Conn] = true
+					file.UsedBy[request.Conn] = 0
 					request.Response <- response
 				}
 				fmt.Printf("Successfully added %p to file %v\n", request.Conn, request.FileName)

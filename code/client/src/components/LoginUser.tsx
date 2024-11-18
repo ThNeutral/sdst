@@ -81,10 +81,10 @@ export function LoginUser() {
     <div className="userauth">
       <div className="userauth-form">
         <UserFrom
-          textBig="Create account"
-          textSmall="Please create an account with your dealer email address."
+          textBig="Hi, Welcome!"
+          textSmall=""
           fields={fields}
-          buttonName="Create and Login"
+          buttonName="Log in"
           submitHandler={handleSubmit}
         />
       </div>
