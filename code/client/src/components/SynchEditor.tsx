@@ -67,7 +67,7 @@ function useDelay<T>(value: T, delay: number) {
   return delayedValue;
 }
 export function SynchEditor() {
-  const [currentCursorPosition, setCurrentCursorPosition] = useState(0);
+  const [currentCursorPosition, setCurrentCursorPosition] = useState(-1);
   const [lockedLines, setLockedLine] = useState<Map<number, string>>(
     new Map<number, string>()
   );
@@ -83,13 +83,12 @@ export function SynchEditor() {
 
     ws.current.addEventListener("open", () => {
       console.log("WebSocket connection opened");
-
-      ws.current!.send(
+      ws.current.send(
         JSON.stringify({
           token: "b9d30a2c-023b-4587-bf62-fde58fa7baa6",
         })
       );
-      ws.current!.send(
+      ws.current.send(
         JSON.stringify({
           filename: "test.py",
         })
@@ -128,12 +127,6 @@ export function SynchEditor() {
     });
   }
 
-  function disconnectFromWS() {
-    if (!ws.current) return;
-    ws.current.close(1000);
-    ws.current = undefined;
-  }
-
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const currentCursorPosition = cursorPositionToLineIndex(
       e.target.selectionStart,
@@ -144,6 +137,12 @@ export function SynchEditor() {
     setIsBusy(true);
     setClientContent(e.target.value);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      connectToWS();
+    }, 200)
+  }, []) 
 
   useEffect(() => {
     if (ws.current) {
@@ -166,10 +165,6 @@ export function SynchEditor() {
   }, [currentCursorPosition]);
 
   useEffect(() => {
-    console.log("Cursor position changed", currentCursorPosition);
-  }, [currentCursorPosition]);
-
-  useEffect(() => {
     const timeoutID = setTimeout(() => {
       setIsBusy(false);
     }, 500);
@@ -185,29 +180,24 @@ export function SynchEditor() {
 
   return (
     <>
-      <div>
+      <div className="editor">
         <textarea
           value={clientContent}
           onChange={(e) => {
             handleChange(e);
           }}
-          style={{ width: "300px", height: "200px", lineHeight: "15px" }}
+          className="editor-textarea"
         ></textarea>
       </div>
       {Array.from(lockedLines.entries()).map(([key, value]) => (
         <div
           key={key}
-          style={{ position: "absolute", left: "310px", top: 100 + key * 15 }}
+          style={{ position: "absolute", right: "310px", top: 40 + key * 23 }}
+          className="marker"
         >
           &lt;== {value}
         </div>
       ))}
-      <div>
-        <button onClick={connectToWS}>connect</button>
-      </div>
-      <div>
-        <button onClick={disconnectFromWS}>disconnect</button>
-      </div>
     </>
   );
 }

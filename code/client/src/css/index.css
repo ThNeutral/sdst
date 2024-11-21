@@ -1,6 +1,7 @@
 @import "./Header.css";
 @import "./UserFrom.css";
 @import "./UserAuth.css";
+@import "./Editor.css";
 
 html {
     overflow: hidden;
