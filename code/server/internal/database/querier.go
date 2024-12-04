@@ -11,9 +11,12 @@ import (
 )
 
 type Querier interface {
+	CreateMessage(ctx context.Context, arg CreateMessageParams) (Message, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteUserByToken(ctx context.Context, token uuid.UUID) error
 	DeleteUserByUsername(ctx context.Context, username string) error
+	GetMessagesByProject(ctx context.Context, projectID uuid.UUID) ([]Message, error)
+	GetMessagesByUsers(ctx context.Context, userID uuid.UUID) ([]Message, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByToken(ctx context.Context, token uuid.UUID) (User, error)
 	GetUserByUsername(ctx context.Context, username string) (User, error)

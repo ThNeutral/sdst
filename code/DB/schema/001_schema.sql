@@ -65,9 +65,9 @@ CREATE TABLE project_file(
 
 -- +goose Down
 
-DROP TABLE users;
 DROP TABLE system_logs;
-DROP TABLE projects;
 DROP TABLE project_metadata;
 DROP TABLE project_users;
 DROP TABLE project_file;
+DROP TABLE projects;
+DROP TABLE users;

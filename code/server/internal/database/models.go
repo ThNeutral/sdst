@@ -11,6 +11,14 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Message struct {
+	ID        uuid.UUID
+	Body      string
+	PostedAt  time.Time
+	UserID    uuid.UUID
+	ProjectID uuid.UUID
+}
+
 type Project struct {
 	ProjectID   uuid.UUID
 	PName       string

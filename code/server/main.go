@@ -38,7 +38,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	port := flag.String("port", "8080", "Set server port. By default port is 8080")
+	port := flag.String("port", "5432", "Set server port. By default port is 5432")
 	flag.Parse()
 
 	ctx := context.Background()
@@ -84,6 +84,11 @@ func main() {
 
 	router.Route("/editor", func(r chi.Router) {
 		r.Get("/open", handlers.WSGateway(upgrader, queries, handlers.HandleEditorHub(editorHub)))
+	})
+
+	router.Route("/messenger", func(r chi.Router) {
+		r.Post("/create", handlers.HandleCreateMessage(queries))
+		r.Get("/fetch{projectId}", handlers.HandleGetMessages(queries))
 	})
 
 	log.Printf("Listening on port :%v\n", *port)
