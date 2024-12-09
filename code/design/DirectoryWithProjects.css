@@ -1,0 +1,923 @@
+/* DirectoryPage */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #1e1e2e;
+
+/* Header */
+
+position: absolute;
+width: 1440px;
+height: 40px;
+left: calc(50% - 1440px / 2);
+top: 10px;
+
+background: #2e2e3e;
+
+/* —Pngtree—magic plasma ball abstract translucent_15853701 1 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 24px;
+top: 4px;
+
+background: url(—Pngtree—magic plasma ball abstract translucent_15853701.png);
+
+/* PLASMA */
+
+position: absolute;
+width: 150px;
+height: 32px;
+left: 61px;
+top: 4px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+
+color: #5e81ac;
+
+/* Vector 3 */
+
+position: absolute;
+width: 2051.57px;
+height: 317px;
+left: -218.25px;
+top: 40.96px;
+
+background: linear-gradient(
+  159.27deg,
+  rgba(237, 77, 104, 0) 18.75%,
+  rgba(255, 83, 112, 0.3) 34.44%,
+  #dc4760 58.37%,
+  rgba(153, 50, 67, 0.08) 69.42%,
+  rgba(186, 61, 82, 0) 75.05%
+);
+transform: rotate(1.6deg);
+
+/* BlurLayer */
+
+position: absolute;
+width: 1440px;
+height: 974px;
+left: 0px;
+top: 50px;
+
+background: rgba(62, 62, 94, 0.1);
+backdrop-filter: blur(12px);
+/* Note: backdrop-filter has minimal browser support */
+
+/* TV - 1 */
+
+position: absolute;
+width: 1000px;
+height: 974px;
+left: 220px;
+top: 50px;
+
+background: #3e3e5e;
+box-shadow: -10px 0px 4px rgba(0, 0, 0, 0.25), 10px 10px 4px rgba(0, 0, 0, 0.25),
+  inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+
+/* projectBoxes2 */
+
+position: absolute;
+width: 848px;
+height: 256px;
+left: 76px;
+top: 546px;
+
+/* box6 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 579px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 605px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 605px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 605px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: 539px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 774px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 774px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 744px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 579px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 605px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* box5 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 309px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 335px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 335px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 335px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: 269px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 504px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 504px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 474px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 309px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 335px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* box4 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 39px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 65px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 65px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 65px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: -1px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 234px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 234px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 204px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 39px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 65px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* projectBoxes1 */
+
+position: absolute;
+width: 848px;
+height: 256px;
+left: 76px;
+top: 211px;
+
+/* box3 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 579px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 605px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 605px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 605px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: 539px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 774px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 774px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 744px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 579px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 605px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* box2 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 309px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 335px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 335px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 335px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: 269px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 504px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 504px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 474px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 309px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 335px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* box1 */
+
+position: absolute;
+width: 230px;
+height: 256px;
+left: 39px;
+top: 0px;
+
+/* Last modified: a week ago */
+
+position: absolute;
+width: 204px;
+height: 25px;
+left: 65px;
+top: 205px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 32px;
+/* or 267% */
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 65px;
+top: 26px;
+
+/* python 1 */
+
+position: absolute;
+width: 96px;
+height: 96px;
+left: 65px;
+top: 26px;
+
+background: url(python.png);
+
+/* Rectangle 33 */
+
+position: absolute;
+width: 289.5px;
+height: 287.25px;
+left: -1px;
+top: -49px;
+
+background: #5e81ac;
+
+/* moreOptions */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 234px;
+top: 10px;
+
+/* dots */
+
+position: absolute;
+width: 24px;
+height: 30px;
+left: 234px;
+top: 10px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 98px;
+height: 147.5px;
+left: 204px;
+top: -57.5px;
+
+background: #e4e4e6;
+
+/* box1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 224px;
+height: 256px;
+left: 39px;
+top: 0px;
+
+border: 5px solid rgba(46, 46, 62, 0.5);
+
+/* Repo name */
+
+position: absolute;
+width: 204px;
+height: 59px;
+left: 65px;
+top: 146px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 32px;
+/* or 160% */
+
+color: #e4e4e6;
+
+/* Line 7 */
+
+position: absolute;
+width: 1000px;
+height: 0px;
+left: 0px;
+top: 151px;
+
+border: 5px solid #3a3a4a;
+
+/* Vector 4 */
+
+position: absolute;
+width: 1050.16px;
+height: 215.5px;
+left: 214px;
+top: 69.5px;
+
+background: linear-gradient(
+  182.72deg,
+  rgba(237, 77, 104, 0) -388.34%,
+  rgba(255, 83, 112, 0.3) -249.28%,
+  #dc4760 -37.18%,
+  rgba(153, 50, 67, 0.08) 60.79%,
+  rgba(186, 61, 82, 0) 110.7%
+);
+filter: blur(8px);
+
+/* My projects */
+
+position: absolute;
+width: 335px;
+height: 105px;
+left: 250px;
+top: 65px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 48px;
+line-height: 32px;
+/* or 67% */
+display: flex;
+align-items: flex-end;
+
+color: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 968px;
+top: 143px;
+
+/* add */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 968px;
+top: 143px;
+
+background: url(add.png);
+
+/* Rectangle 29 */
+
+position: absolute;
+width: 66.02px;
+height: 53.16px;
+left: 954.43px;
+top: 134.84px;
+
+background: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1024px;
+top: 141px;
+
+/* import */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1024px;
+top: 141px;
+
+background: url(import.png);
+
+/* Rectangle 30 */
+
+position: absolute;
+width: 62.86px;
+height: 76.01px;
+left: 1008.88px;
+top: 130.17px;
+
+background: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1080px;
+top: 141px;
+
+/* folder */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1080px;
+top: 141px;
+
+background: url(folder.png);
+
+/* Rectangle 32 */
+
+position: absolute;
+width: 63.91px;
+height: 61.45px;
+left: 1075.85px;
+top: 123.84px;
+
+background: #e4e4e6;
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1136px;
+top: 141px;
+
+/* git 2 */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 1136px;
+top: 141px;
+
+background: url(git.png);
+
+/* Rectangle 35 */
+
+position: absolute;
+width: 1368px;
+height: 1283px;
+left: 814px;
+top: -174px;
+
+background: #e4e4e6;
