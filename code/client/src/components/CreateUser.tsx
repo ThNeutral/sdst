@@ -36,7 +36,7 @@ const fields: UserFromField[] = [
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export function CreateUser() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -82,17 +82,19 @@ export function CreateUser() {
       return;
     }
 
+    console.log(JSON.stringify(data));
+
     const response = await fetch(baseURL + "/user/create", {
       method: "POST",
       body: JSON.stringify(data),
     });
     const json = await response.json();
     if (json.message) {
-        console.log(json.message);
-        return
+      console.log(json.message);
+      return;
     }
-    localStorage.setItem("token", json.token)
-    navigate("/")
+    localStorage.setItem("token", json.token);
+    navigate("/");
   }
 
   return (
