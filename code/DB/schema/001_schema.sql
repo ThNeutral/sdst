@@ -1,4 +1,5 @@
 -- +goose Up
+
 CREATE TABLE users(
     user_id UUID PRIMARY KEY,
     token UUID NOT NULL,
@@ -23,8 +24,8 @@ CREATE TABLE system_logs(
 CREATE TABLE projects (
     project_id UUID PRIMARY KEY,
     p_name VARCHAR(50) NOT NULL,
-    description TEXT NOT NULL,
-    owner_id INT NOT NULL,
+    description TEXT NOT,
+    owner_id UUID NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
