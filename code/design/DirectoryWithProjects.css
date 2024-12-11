@@ -45,6 +45,34 @@ align-items: center;
 
 color: #5e81ac;
 
+/* Mask group */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 1380px;
+top: 4px;
+
+/* dark 3 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 1380px;
+top: 4px;
+
+background: url(dark.png);
+
+/* Rectangle 36 */
+
+position: absolute;
+width: 90px;
+height: 96px;
+left: 1351px;
+top: -28px;
+
+background: #d9d9d9;
+
 /* Vector 3 */
 
 position: absolute;

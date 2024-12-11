@@ -1,0 +1,45 @@
+/* 404ErrorPage */
+
+position: relative;
+width: 1440px;
+height: 815px;
+
+background: var(--bg-color);
+
+/* 404 */
+
+position: absolute;
+width: 1024px;
+height: 512px;
+left: 208px;
+top: 152px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 256px;
+line-height: 338px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* THE PAGE NOT FOUND */
+
+position: absolute;
+width: 1024px;
+height: 64px;
+left: 220px;
+top: 560px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 32px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);

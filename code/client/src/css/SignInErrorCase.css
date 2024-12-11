@@ -1,0 +1,100 @@
+/* Error Container */
+.error-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background: var(--bg-color);
+}
+
+/* Header */
+.error-header {
+  position: absolute;
+  width: 1440px;
+  height: 96px;
+  left: calc(50% - 1440px / 2);
+  top: 10px;
+  background: var(--secondary-color);
+}
+
+/* Plasma Logo */
+.logo {
+  position: absolute;
+  width: 336px;
+  height: 96px;
+  left: 40px;
+  top: 0px;
+}
+
+/* Logo Image */
+.logo-image {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  left: 0px;
+  top: 12px;
+  background: url("—Pngtree—magic plasma ball abstract translucent_15853701.png");
+}
+
+/* Header Title (Collaborative Editor Plasma) */
+.header-title {
+  position: absolute;
+  width: 250px;
+  height: 64px;
+  left: 86px;
+  top: 16px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--primary-color);
+}
+
+/* Error Input Field Container */
+.error-input-field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+  width: 353px;
+  height: 56px;
+}
+
+/* Input Field Error Styling */
+.error-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 16px;
+  gap: 10px;
+  width: 353px;
+  height: 56px;
+  background: var(--input-bg-color);
+  border: 1px solid var(--input-border-color);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(212, 212, 220, 0.5);
+}
+
+/* Error Message */
+.error-message {
+  display: flex;
+  align-items: flex-end;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 125%;
+  color: var(--error-color);
+}
+
+/* Error Icon */
+.error-icon {
+  display: none;
+  width: 24px;
+  height: 24px;
+}

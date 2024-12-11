@@ -12,7 +12,7 @@
   font-weight: 400;
   font-size: 32px;
   line-height: 130%;
-  color: #5e81ac;
+  color: var(--primary-color); /* Theme variable */
 }
 
 .userform-text-small {
@@ -22,7 +22,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: #4d4d4d;
+  color: var(--secondary-color); /* Theme variable */
 }
 
 .userform-form-input {
@@ -38,26 +38,26 @@
   padding: 18px 16px;
   gap: 10px;
   margin: 5px;
-  background: rgba(34, 34, 34, 0.1);
-  border: 1px solid #d8dadc;
+  background: var(--input-bg-color); /* Theme variable */
+  border: 1px solid var(--input-border-color); /* Theme variable */
   backdrop-filter: blur(7px);
   border-radius: 10px;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: rgba(212, 212, 220, 0.5);
+  color: var(--text-color); /* Theme variable */
 }
 
-.userfrom-form-button {
+.userform-form-button {
   width: 353px;
   height: 56px;
-  background: #5e81ac;
+  background: var(--primary-color); /* Theme variable */
   border-radius: 10px;
   font-family: "JetBrains Mono";
   font-weight: 500;
   font-size: 18px;
-  color: #ffffff;
+  color: var(--button-text-color); /* Theme variable */
   text-align: center;
   line-height: 56px;
   margin: 20px;
@@ -75,5 +75,5 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 125%;
-  color: #e64646;
+  color: var(--error-color); /* Theme variable */
 }

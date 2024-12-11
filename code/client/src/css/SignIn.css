@@ -1,0 +1,122 @@
+/* CSS Styles */
+
+.signin-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background: var(--bg-color);
+}
+
+.signin-header {
+  position: absolute;
+  width: 1440px;
+  height: 96px;
+  left: calc(50% - 1440px / 2);
+  top: 10px;
+  background: var(--secondary-color);
+}
+
+.logo {
+  position: absolute;
+  width: 336px;
+  height: 96px;
+  left: 40px;
+  top: 0px;
+}
+
+.logo-image {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  left: 0px;
+  top: 12px;
+  background: url("./icons/PlasmaLogo.png");
+}
+
+.header-title {
+  position: absolute;
+  width: 250px;
+  height: 64px;
+  left: 86px;
+  top: 16px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--primary-color);
+}
+
+.create-account-section {
+  position: absolute;
+  width: 353px;
+  height: 611px;
+  left: 543px;
+  top: 174px;
+}
+
+.create-account-title {
+  position: absolute;
+  width: 339px;
+  height: 42px;
+  left: 543px;
+  top: 174px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+  color: var(--primary-color);
+}
+
+.instruction-text {
+  position: absolute;
+  width: 346px;
+  height: 40px;
+  left: 543px;
+  top: 226px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--text-color);
+}
+
+.input-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+  width: 353px;
+  height: 56px;
+}
+
+.input-field {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 16px;
+  gap: 10px;
+  width: 353px;
+  height: 56px;
+  background: var(--input-bg-color);
+  border: 1px solid var(--input-border-color);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(var(--text-color), 0.5); /* Adjusted for transparency */
+}
+
+.submit-button {
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 .userauth {
   width: 100%;
   height: 100%;
-  background-color: #1e1e2e;
+  background-color: var(--bg-color);
 
   display: flex;
   flex-direction: column;
@@ -11,4 +11,5 @@
 .userauth-form {
   position: relative;
   top: 50px;
+  color: var(--text-color);
 }

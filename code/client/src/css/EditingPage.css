@@ -1,0 +1,724 @@
+/* EditingPage */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: var(--bg-color);
+
+/* Header */
+
+position: absolute;
+width: 1440px;
+height: 40px;
+left: calc(50% - 1440px / 2);
+top: 10px;
+
+background: var(--secondary-color);
+
+/* —Pngtree—magic plasma ball abstract translucent_15853701 1 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 24px;
+top: 4px;
+
+background: url(—Pngtree—magic plasma ball abstract translucent_15853701.png);
+
+/* Button */
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1160px;
+top: 8px;
+
+/* RunButton */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1160px;
+top: 8px;
+
+background: var(--button-bg-color);
+border: 1px solid var(--secondary-color);
+border-radius: 12px;
+
+/* Frame 16 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 50px;
+height: 20px;
+left: 1190px;
+top: 10px;
+
+border-radius: 5px;
+
+/* RUN */
+
+width: 29px;
+height: 24px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Polygon 1 */
+
+position: absolute;
+width: 20px;
+height: 20px;
+left: 1190px;
+top: 10px;
+
+background: var(--text-color);
+border-radius: 4px;
+transform: rotate(90deg);
+
+/* InviteButton */
+
+position: absolute;
+width: 100px;
+height: 26px;
+left: 1280px;
+top: 7px;
+
+/* Rectangle 19 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1280px;
+top: 8px;
+
+background: var(--secondary-color);
+border: 1px solid var(--secondary-color);
+border-radius: 12px;
+
+/* icon */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1356px;
+top: 12px;
+
+/* InvPerson */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1356px;
+top: 12px;
+
+/* UsrIcon 1 */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1372px;
+top: 12px;
+
+background: url(UsrIcon.png);
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+/* Rectangle 17 */
+
+position: absolute;
+width: 57.67px;
+height: 48.33px;
+left: 1335px;
+top: 0px;
+
+background: var(--primary-color);
+
+/* Plus */
+
+position: absolute;
+width: 7.11px;
+height: 7.11px;
+left: 1364px;
+top: 13.97px;
+
+/* plus_red 1 */
+
+position: absolute;
+width: 7.11px;
+height: 7.11px;
+left: 1364px;
+top: 13.97px;
+
+background: url(plus_red.png);
+
+/* Rectangle 18 */
+
+position: absolute;
+width: 22.47px;
+height: 18.77px;
+left: 1356.32px;
+top: 6.57px;
+
+background: var(--text-color);
+
+/* Invite */
+
+position: absolute;
+width: 62px;
+height: 25px;
+left: 1281px;
+top: 7px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* TerminalButton */
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1040px;
+top: 8px;
+
+/* Rectangle 19 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 100px;
+height: 25px;
+left: 1040px;
+top: 8px;
+
+background: var(--secondary-color);
+border: 1px solid var(--secondary-color);
+border-radius: 12px;
+
+/* Mask group */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1117px;
+top: 12px;
+
+/* terminal 1 */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1117px;
+top: 12px;
+
+background: url(terminal.png);
+
+/* Rectangle 27 */
+
+position: absolute;
+width: 61px;
+height: 56px;
+left: 1097px;
+top: -5px;
+
+background: var(--primary-color);
+
+/* Terminal */
+
+position: absolute;
+width: 60px;
+height: 25px;
+left: 1049px;
+top: 8px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* Ellipse 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 25px;
+height: 25px;
+left: 1400px;
+top: 8px;
+
+background: var(--secondary-color);
+border: 1px solid var(--secondary-color);
+
+/* Repo Name */
+
+position: absolute;
+width: 150px;
+height: 32px;
+left: 61px;
+top: 4px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+
+color: var(--text-color);
+
+/* Mask group */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 216px;
+top: 4px;
+
+/* dark 3 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 216px;
+top: 4px;
+
+background: url(dark.png);
+
+/* Rectangle 36 */
+
+position: absolute;
+width: 90px;
+height: 96px;
+left: 187px;
+top: -28px;
+
+background: #d9d9d9;
+
+/* TerminalButton */
+
+position: absolute;
+width: 110px;
+height: 25px;
+left: 1220px;
+top: 50px;
+
+/* Rectangle 19 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 110px;
+height: 25px;
+left: 1220px;
+top: 50px;
+
+background: var(--bg-color);
+border: 1px solid var(--secondary-color);
+
+/* Mask group */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1305px;
+top: 54px;
+
+/* chat 2 */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 1305px;
+top: 54px;
+
+background: url(chat.png);
+
+/* Rectangle 28 */
+
+position: absolute;
+width: 42px;
+height: 30px;
+left: 1293px;
+top: 48px;
+
+background: var(--primary-color);
+
+/* Chat */
+
+position: absolute;
+width: 66px;
+height: 25px;
+left: 1229.9px;
+top: 50px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* TerminalButton */
+
+position: absolute;
+width: 110px;
+height: 25px;
+left: 1330px;
+top: 50px;
+
+/* Rectangle 19 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 110px;
+height: 25px;
+left: 1330px;
+top: 50px;
+
+background: var(--bg-color);
+border: 1px solid var(--secondary-color);
+
+/* Mask group */
+
+position: absolute;
+width: 17.6px;
+height: 16px;
+left: 1414.7px;
+top: 54px;
+
+/* terminal 1 */
+
+position: absolute;
+width: 17.6px;
+height: 16px;
+left: 1414.7px;
+top: 54px;
+
+background: url(terminal.png);
+
+/* Rectangle 27 */
+
+position: absolute;
+width: 67.1px;
+height: 56px;
+left: 1392.7px;
+top: 37px;
+
+background: var(--primary-color);
+
+/* Logs */
+
+position: absolute;
+width: 66px;
+height: 25px;
+left: 1339.9px;
+top: 50px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: var(--text-color);
+
+/* TV - 1 */
+
+position: absolute;
+width: 1000px;
+height: 974px;
+left: 220px;
+top: 50px;
+
+background: var(--secondary-color);
+
+/* 04 Search input */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 8px 8px 12px;
+gap: 12px;
+
+position: absolute;
+width: 137px;
+height: 25px;
+left: 40px;
+top: 58px;
+
+background: var(--secondary-color);
+border: 1px solid var(--input-border-color);
+border-radius: 8px;
+
+/* Label */
+
+width: 89px;
+height: 24px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 24px;
+/* identical to box height, or 240% */
+
+color: var(--primary-color);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+/* MagniGlassIcon 1 */
+
+width: 16px;
+height: 16px;
+
+background: url(MagniGlassIcon.png);
+background-blend-mode: difference;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Line 1 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 0px;
+top: 98px;
+
+border: 1px solid var(--secondary-color);
+
+/* Line 5 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 0px;
+top: 120px;
+
+border: 1px solid var(--secondary-color);
+
+/* Line 2 */
+
+position: absolute;
+width: 220px;
+height: 0px;
+left: 1220px;
+top: 75px;
+
+border: 1px solid var(--secondary-color);
+
+/* Line 3 */
+
+position: absolute;
+width: 974px;
+height: 0px;
+left: 220px;
+top: 50px;
+
+border: 1px solid var(--secondary-color);
+transform: rotate(90deg);
+
+/* Line 4 */
+
+position: absolute;
+width: 974px;
+height: 0px;
+left: 1220px;
+top: 50px;
+
+border: 1px solid var(--secondary-color);
+transform: rotate(90deg);
+
+/* addNewFile */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 10px;
+top: 103px;
+
+/* add-file */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 10px;
+top: 103px;
+
+background: url(add-file.png);
+
+/* Rectangle 20 */
+
+position: absolute;
+width: 32px;
+height: 19px;
+left: 0px;
+top: 98px;
+
+background: var(--text-color);
+
+/* hideLeftSide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 181px;
+top: 103px;
+
+/* hide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 181px;
+top: 103px;
+
+background: url(hide.png);
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 31px;
+height: 42px;
+left: 169px;
+top: 88px;
+
+background: var(--text-color);
+
+/* hideRightSide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 1230px;
+top: 83px;
+
+/* hide */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 1230px;
+top: 83px;
+
+background: url(hide.png);
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 31px;
+height: 42px;
+left: 1218px;
+top: 68px;
+
+background: var(--text-color);
+
+/* moreOptions */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 198px;
+top: 103px;
+
+/* dots */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: 198px;
+top: 103px;
+
+background: url(dots.png);
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 20px;
+height: 18px;
+left: 187px;
+top: 98px;
+
+background: var(--text-color);
+
+/* Rectangle 23 */
+
+position: absolute;
+width: 20px;
+height: 18px;
+left: 218px;
+top: 98px;
+
+background: var(--text-color);
+
+/* exit */
+
+position: absolute;
+width: 20px;
+height: 20px;
+left: 1280px;
+top: 93px;
+
+background: url(exit.png);
+
+border-radius: 3px;

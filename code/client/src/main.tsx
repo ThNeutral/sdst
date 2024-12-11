@@ -1,40 +1,68 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./css/index.css";
-import { CreateUser } from "./components/CreateUser";
-import { Header } from "./components/Header";
-import { LoginUser } from "./components/LoginUser";
-import { SynchEditor } from "./components/SynchEditor";
 
+// Import all components
+import AccountCreation from "./components/AccountCreation";
+import AccountCreationErrorCase from "./components/AccountCreationErrorCase";
+import Directory from "./components/Directory";
+import DirectoryEmpty from "./components/DirectoryEmpty";
+import EditingPage from "./components/EditingPage";
+import ErrorPage from "./components/ErrorPage";
+import SignIn from "./components/SignIn";
+import SignInErrorCase from "./components/SignInErrorCase";
+
+// Define the router configuration
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Header />,
+    element: <SignIn />, // Default landing page
+    errorElement: <ErrorPage />, // Fallback for unknown routes
     children: [
       {
-        path: "user",
+        path: "sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "sign-in-error",
+        element: <SignInErrorCase />,
+      },
+      {
+        path: "account-creation",
+        element: <AccountCreation />,
+      },
+      {
+        path: "account-creation-error",
+        element: <AccountCreationErrorCase />,
+      },
+      {
+        path: "directory",
         children: [
           {
-            path: "create",
-            element: <CreateUser />,
+            path: "",
+            element: <Directory />, // Default Directory
           },
           {
-            path: "login",
-            element: <LoginUser />,
+            path: "empty",
+            element: <DirectoryEmpty />,
           },
         ],
       },
       {
         path: "editor",
-        element: <SynchEditor />
-      }
+        element: <EditingPage />,
+      },
     ],
   },
 ]);
 
+// Render the application with the ThemeProvider wrapper
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>
 );

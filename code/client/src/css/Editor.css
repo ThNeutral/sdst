@@ -1,17 +1,18 @@
 .editor {
-    height: 100%;
-    background-color: #1e1e2e;
+  height: 100%;
+  background-color: var(--bg-color);
 }
 
 .editor-textarea {
-    position: relative;
-    width: 80%;
-    height: 100%;
-    left: 10%;
-    background: #3e3e5e;
-    border: none;
-    resize: none;
-    outline: none;
-    font-size: 20px;
-    line-height: 23px;
+  position: relative;
+  width: 80%;
+  height: 100%;
+  left: 10%;
+  background: var(--secondary-color);
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 20px;
+  line-height: 23px;
+  color: var(--text-color);
 }

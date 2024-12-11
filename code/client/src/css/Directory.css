@@ -1,0 +1,333 @@
+/* DirectoryPageNoProjectYet */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: var(--bg-color); /* Replaced with global background color */
+
+/* Header */
+
+position: absolute;
+width: 1440px;
+height: 40px;
+left: calc(50% - 1440px / 2);
+top: 10px;
+
+background: var(--secondary-color); /* Replaced with secondary color */
+
+/* —Pngtree—magic plasma ball abstract translucent_15853701 1 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 24px;
+top: 4px;
+
+background: url(—Pngtree—magic plasma ball abstract translucent_15853701.png);
+
+/* PLASMA */
+
+position: absolute;
+width: 150px;
+height: 32px;
+left: 61px;
+top: 4px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* or 200% */
+display: flex;
+align-items: center;
+
+color: var(--primary-color); /* Replaced with global primary color */
+
+/* Mask group */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 1380px;
+top: 4px;
+
+/* dark 3 */
+
+position: absolute;
+width: 32px;
+height: 32px;
+left: 1380px;
+top: 4px;
+
+background: url(dark.png);
+
+/* Rectangle 36 */
+
+position: absolute;
+width: 90px;
+height: 96px;
+left: 1351px;
+top: -28px;
+
+background: var(
+  --input-border-color
+); /* Replaced with global input border color */
+
+/* Vector 3 */
+
+position: absolute;
+width: 2051.57px;
+height: 317px;
+left: -218.25px;
+top: 40.96px;
+
+background: linear-gradient(
+  159.27deg,
+  rgba(237, 77, 104, 0) 18.75%,
+  rgba(255, 83, 112, 0.3) 34.44%,
+  #dc4760 58.37%,
+  rgba(153, 50, 67, 0.08) 69.42%,
+  rgba(186, 61, 82, 0) 75.05%
+);
+transform: rotate(1.6deg);
+
+/* BlurLayer */
+
+position: absolute;
+width: 1440px;
+height: 974px;
+left: 0px;
+top: 50px;
+
+background: rgba(62, 62, 94, 0.1);
+backdrop-filter: blur(12px);
+/* Note: backdrop-filter has minimal browser support */
+
+/* TV - 1 */
+
+position: absolute;
+width: 1000px;
+height: 974px;
+left: 220px;
+top: 50px;
+
+background: var(--secondary-color); /* Replaced with global secondary color */
+box-shadow: -10px 0px 4px rgba(0, 0, 0, 0.25), 10px 10px 4px rgba(0, 0, 0, 0.25),
+  inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+
+/* Plasma editor Where ideas ignite */
+
+position: absolute;
+width: 499px;
+height: 139px;
+left: 120px;
+top: 180px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 64px;
+/* or 100% */
+
+color: var(--text-color); /* Replaced with global text color */
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 123px;
+top: 359px;
+
+/* add */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 123px;
+top: 359px;
+
+background: url(add.png);
+
+/* Rectangle 29 */
+
+position: absolute;
+width: 66.02px;
+height: 53.16px;
+left: 109.43px;
+top: 350.84px;
+
+background: var(--primary-color); /* Replaced with global primary color */
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 416px;
+
+/* import */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 416px;
+
+background: url(import.png);
+
+/* Rectangle 30 */
+
+position: absolute;
+width: 62.86px;
+height: 76.01px;
+left: 104.88px;
+top: 405.17px;
+
+background: var(--primary-color); /* Replaced with global primary color */
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 528px;
+
+/* git 2 */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 528px;
+
+background: url(git.png);
+
+/* Rectangle 35 */
+
+position: absolute;
+width: 1368px;
+height: 1283px;
+left: -202px;
+top: 213px;
+
+background: var(--primary-color); /* Replaced with global primary color */
+
+/* Mask group */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 472px;
+
+/* folder */
+
+position: absolute;
+width: 36px;
+height: 36px;
+left: 120px;
+top: 472px;
+
+background: url(folder.png);
+
+/* Rectangle 32 */
+
+position: absolute;
+width: 63.91px;
+height: 61.45px;
+left: 115.85px;
+top: 454.84px;
+
+background: var(--primary-color); /* Replaced with global primary color */
+
+/* New file... */
+
+position: absolute;
+width: 240px;
+height: 48px;
+left: 176px;
+top: 354px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 64px;
+/* or 400% */
+
+color: var(--text-color); /* Replaced with global text color */
+
+/* Open file... */
+
+position: absolute;
+width: 240px;
+height: 48px;
+left: 176px;
+top: 410px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 64px;
+/* or 400% */
+
+color: var(--text-color); /* Replaced with global text color */
+
+/* Open folder... */
+
+position: absolute;
+width: 240px;
+height: 48px;
+left: 176px;
+top: 466px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 64px;
+/* or 400% */
+
+color: var(--text-color); /* Replaced with global text color */
+
+/* Clone Git Repository... */
+
+position: absolute;
+width: 240px;
+height: 48px;
+left: 176px;
+top: 520px;
+
+font-family: "JetBrains Mono";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 64px;
+/* or 400% */
+
+color: var(--text-color); /* Replaced with global text color */
+
+/* Vector 4 */
+
+position: absolute;
+width: 1050.16px;
+height: 215.5px;
+left: 214px;
+top: 69.5px;
+
+background: linear-gradient(
+  182.72deg,
+  rgba(237, 77, 104, 0) -388.34%,
+  rgba(255, 83, 112, 0.3) -249.28%,
+  #dc4760 -37.18%,
+  rgba(153, 50, 67, 0.08) 60.79%,
+  rgba(186, 61, 82, 0) 110.7%
+);
+filter: blur(8px);

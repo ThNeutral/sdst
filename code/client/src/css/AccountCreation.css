@@ -1,0 +1,126 @@
+/* General Page Container */
+.account-creation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color); /* Using theme color */
+}
+
+/* Header */
+.header {
+  position: absolute;
+  width: 100%;
+  height: 96px;
+  top: 10px;
+  background: var(--secondary-color); /* Using theme color */
+}
+
+/* Plasma Logo */
+.logo {
+  position: absolute;
+  width: 336px;
+  height: 96px;
+  left: 40px;
+  top: 0px;
+}
+
+/* Logo Image */
+.logo-img {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  left: 0px;
+  top: 12px;
+  background: url("./icons/PlasmaLogo.png");
+}
+
+/* Header Title (Collaborative Editor Plasma) */
+.header-title {
+  position: absolute;
+  width: 250px;
+  height: 64px;
+  left: 86px;
+  top: 16px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--primary-color); /* Using theme color */
+}
+
+/* Creating Account Form Container */
+.form-container {
+  position: absolute;
+  width: 353px;
+  height: 611px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 174px;
+}
+
+/* Creating Account Title */
+.form-title {
+  position: absolute;
+  width: 339px;
+  height: 42px;
+  top: 174px;
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+  color: var(--primary-color); /* Using theme color */
+}
+
+/* Instruction Text */
+.form-instruction {
+  position: absolute;
+  width: 346px;
+  height: 40px;
+  top: 226px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--text-color); /* Using theme color */
+}
+
+/* Input Fields for Username, Email, Password */
+.input-field {
+  position: absolute;
+  width: 353px;
+  height: 56px;
+  margin-bottom: 10px;
+}
+
+.input-field input {
+  width: 100%;
+  height: 100%;
+  padding: 18px 16px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: rgba(212, 212, 220, 0.5);
+  background: var(--input-bg-color); /* Using theme color */
+  border: 1px solid var(--input-border-color); /* Using theme color */
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+}
+
+/* Submit Button */
+.submit-button {
+  position: absolute;
+  width: 353px;
+  height: 56px;
+  top: 650px;
+  background: var(--primary-color); /* Using theme color */
+  border-radius: 10px;
+  font-family: "JetBrains Mono";
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--button-text-color); /* Using theme color */
+  text-align: center;
+  line-height: 56px;
+  cursor: pointer;
+}
