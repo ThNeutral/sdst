@@ -38,7 +38,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	port := flag.String("port", "8000", "Set server port. By default port is 8000")
+	port := flag.String("port", "8080", "Set server port. By default port is 8000")
 	flag.Parse()
 
 	ctx := context.Background()

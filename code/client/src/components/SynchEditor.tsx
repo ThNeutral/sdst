@@ -85,7 +85,7 @@ export function SynchEditor() {
       console.log("WebSocket connection opened");
       ws.current.send(
         JSON.stringify({
-          token: "b9d30a2c-023b-4587-bf62-fde58fa7baa6",
+          token: "96ec6348-e5fd-42a1-8bc8-a432643586fd", // If editor.spec.ts test fails, create new user and past new user token here
         })
       );
       ws.current.send(
@@ -141,7 +141,7 @@ export function SynchEditor() {
   useEffect(() => {
     setTimeout(() => {
       connectToWS();
-    }, 200)
+    }, 500)
   }, []) 
 
   useEffect(() => {
